@@ -12,24 +12,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class DocumentType
+ * Class Country
  * 
- * @property int $id_document_type
- * @property string $name
+ * @property int $id_country
+ * @property string|null $name
  * @property Carbon $created_at
  * @property Carbon|null $update_at
  * @property string|null $deleted_at
  * 
- * @property Collection|Employee[] $employees
+ * @property Collection|City[] $cities
  *
  * @package App\Models
  */
-class DocumentType extends Model
+class Country extends Model
 {
 	use SoftDeletes;
-	protected $table = 'document_type';
-	protected $primaryKey = 'id_document_type';
+	protected $table = 'country';
+	protected $primaryKey = 'id_country';
+	public $incrementing = false;
 	public $timestamps = false;
+
+	protected $casts = [
+		'id_country' => 'int'
+	];
 
 	protected $dates = [
 		'update_at'
@@ -40,8 +45,8 @@ class DocumentType extends Model
 		'update_at'
 	];
 
-	public function employees()
+	public function cities()
 	{
-		return $this->hasMany(Employee::class, 'document_type_id_document_type');
+		return $this->hasMany(City::class, 'fk_id_country');
 	}
 }

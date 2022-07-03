@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\document_type;
 use Illuminate\Http\Request;
 
 class DocumentTypeController extends Controller
@@ -31,10 +30,10 @@ class DocumentTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\document_type  $document_type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(document_type $document_type)
+    public function show($id)
     {
         //
     }
@@ -43,10 +42,10 @@ class DocumentTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\document_type  $document_type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, document_type $document_type)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -54,10 +53,10 @@ class DocumentTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\document_type  $document_type
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(document_type $document_type)
+    public function destroy($id)
     {
         //
     }
