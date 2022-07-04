@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\City;
+use App\Models\Country;
 
-class CityFactory extends Factory
+class CountryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +15,7 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'fk_id_country' => 1,
+            'name' => "Colombia",
             'created_at' => now()
         ];
     }
@@ -28,8 +27,8 @@ class CityFactory extends Factory
      */
     public function run()
     {
-        City::factory()
-        ->count(30)
+        Country::factory()
+        ->count(1)
         ->create();
     }
 }
