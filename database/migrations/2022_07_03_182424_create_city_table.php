@@ -17,8 +17,8 @@ class CreateCityTable extends Migration
             $table->integer('id_city', true);
             $table->string('name', 75);
             $table->integer('fk_id_country')->index('fk_city_country1_idx');
-            $table->timestamp('created_at');
-            $table->timestamp('update_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
             $table->softDeletes();
         });
     }

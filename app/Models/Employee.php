@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Employee extends Model
 {
+	use HasFactory;
 	protected $table = 'employee';
 	protected $primaryKey = 'id_employee';
 	public $timestamps = false;

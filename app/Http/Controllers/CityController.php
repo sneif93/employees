@@ -47,7 +47,7 @@ class CityController extends Controller
         if($city){
             return view("layouts.element",compact('city'));
         }else{
-            return view("error",401);
+            abort(401,"Not Found");
         }
     }
 
@@ -65,14 +65,11 @@ class CityController extends Controller
             if($city->fill($request->all())->save()){
                 return view("layouts.element",compact('city'));
             }else{
-                return view("error",401);
+                abort(401,"Not Found");
             }
 
         }else{
-            return response()->json([
-                'res' => false,
-                'message' => 'Not found'
-            ]);
+            abort(401,"Not Found");
         }
 
 
@@ -92,13 +89,10 @@ class CityController extends Controller
                 $cities = City::paginate(10);   
                 return view("layouts/list",compact('cities'));
             }else{
-                return view("error",401);
+                abort(401,"Not Found");
             }
         }else{
-            return response()->json([
-                'res' => false,
-                'message' => 'Not found'
-            ]);
+            abort(401,"Not Found");
         }
     }
 }

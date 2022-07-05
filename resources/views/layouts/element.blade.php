@@ -12,6 +12,9 @@
             @if(!empty($jobPosition))
                 @include('jobPosition.element')
             @endif
+            @if(!empty($employee))
+                @include('employee.element')
+            @endif
             @extends('layouts.head')
         </div>
     </div>

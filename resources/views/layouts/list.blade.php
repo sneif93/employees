@@ -11,6 +11,9 @@
         @if(!empty($jobPositions))
             @include('jobPosition.list')
         @endif
+        @if(!empty($employees))
+            @include('employee.list')
+        @endif
         @extends('layouts.head')
     </div>
 </div>

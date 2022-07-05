@@ -18,10 +18,13 @@ class CreateEmployeeTable extends Migration
             $table->string('name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
             $table->string('document_number', 45)->nullable();
-            $table->string('address', 45)->nullable();
+            $table->string('address', 245)->nullable();
             $table->string('phone_number', 45)->nullable();
             $table->integer('city_id_city')->index('fk_employee_city_idx');
             $table->integer('document_type_id_document_type')->index('fk_employee_document_type1_idx');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->softDeletes();
         });
     }
 

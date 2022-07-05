@@ -16,8 +16,8 @@ class CreateDocumentTypeTable extends Migration
         Schema::create('document_type', function (Blueprint $table) {
             $table->integer('id_document_type', true);
             $table->string('name', 75);
-            $table->timestamp('created_at');
-            $table->timestamp('update_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
             $table->softDeletes();
         });
     }

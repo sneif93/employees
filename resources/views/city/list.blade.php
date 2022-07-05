@@ -4,7 +4,7 @@
         <ul class="nav">
         <h2>Cities</h2> 
             <li class="nav-item">
-                <a class="nav-link icofont-ui-add text-dark" href="../city-add"></a> 
+                <a class="nav-link icofont-ui-add text-dark" href="/city-add"></a> 
             </li>
         </ul>
         <table class="table table-striped table-sm">
@@ -27,13 +27,13 @@
                     <td class="justify-content-end"> 
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link icofont-info-circle text-dark" href="../city/{{ $city->id_city }}"></a> 
+                                <a class="nav-link icofont-info-circle text-dark" href="/city/{{ $city->id_city }}"></a> 
                             </li>
                             <li class="nav-item">    
-                                <a class="nav-link icofont-ui-edit text-dark" href="../city-update/{{ $city->id_city }}"></a>
+                                <a class="nav-link icofont-ui-edit text-dark" href="/city-update/{{ $city->id_city }}"></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link icofont-ui-delete text-danger" href="../city/delete/{{ $city->id_city }}"></a> 
+                                <a class="nav-link icofont-ui-delete text-danger" href="/city/delete/{{ $city->id_city }}"></a> 
                             </li>
                         </ul>
                     </td>
