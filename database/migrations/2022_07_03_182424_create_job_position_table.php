@@ -16,7 +16,7 @@ class CreateJobPositionTable extends Migration
         Schema::create('job_position', function (Blueprint $table) {
             $table->integer('id_job_position', true);
             $table->string('name', 75);
-            $table->integer('parent_id_job_position')->index('fk_job_position_job_position1_idx');
+            $table->integer('parent_id_job_position')->index('fk_job_position_job_position1_idx')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('update_at')->nullable();
             $table->softDeletes();

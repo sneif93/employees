@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CityRequest;
 use Illuminate\Http\Request;
 use App\Models\City;
 class CityController extends Controller
@@ -14,19 +15,24 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::paginate(10);
-        //var_dump($cities);
+
         return view("layouts/list",compact('cities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param   Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityRequest $request)
     {
-        //
+        $city = City::create($request->all());
+        //$city->created_at = now();
+        if($city){
+            $city->refresh();
+            return view("layouts.element",compact('city'));
+        }
     }
 
     /**
@@ -37,7 +43,12 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        //
+        $city = City::find($id);
+        if($city){
+            return view("layouts.element",compact('city'));
+        }else{
+            return view("error",401);
+        }
     }
 
     /**
@@ -47,9 +58,24 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityRequest $request, $id)
     {
-        //
+        $city = City::find($id);
+        if($city){
+            if($city->fill($request->all())->save()){
+                return view("layouts.element",compact('city'));
+            }else{
+                return view("error",401);
+            }
+
+        }else{
+            return response()->json([
+                'res' => false,
+                'message' => 'Not found'
+            ]);
+        }
+
+
     }
 
     /**
@@ -60,6 +86,19 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $city = City::find($id);
+        if($city){
+            if($city->delete()){
+                $cities = City::paginate(10);   
+                return view("layouts/list",compact('cities'));
+            }else{
+                return view("error",401);
+            }
+        }else{
+            return response()->json([
+                'res' => false,
+                'message' => 'Not found'
+            ]);
+        }
     }
 }

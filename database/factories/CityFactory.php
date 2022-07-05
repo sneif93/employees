@@ -13,9 +13,10 @@ class CityFactory extends Factory
      * @return array
      */
     public function definition()
-    {
+    {   
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->randomElement(include("CitiesArray.php")),
+            //'name' => $faker->city(),
             'fk_id_country' => 1,
             'created_at' => now()
         ];
@@ -28,8 +29,8 @@ class CityFactory extends Factory
      */
     public function run()
     {
-        City::factory()
-        ->count(30)
-        ->create();
+        City::factory()->create();
     }
+
+   
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobPosition;
 use Illuminate\Http\Request;
 
 class JobPositionController extends Controller
@@ -13,7 +14,8 @@ class JobPositionController extends Controller
      */
     public function index()
     {
-        //
+        $jobPositions = JobPosition::paginate(10);
+        return view('layouts/list', compact('jobPositions'));
     }
 
     /**
@@ -24,7 +26,8 @@ class JobPositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
     }
 
     /**
