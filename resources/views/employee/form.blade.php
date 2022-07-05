@@ -14,7 +14,7 @@
         <div class="col-12 m-2">
             <label for="inputEmail4" class="form-label">Last Name</label>
             <div class="input-group has-validation">
-                <input name="name" @if(!empty($employee)) value="{{ $employee->name}}" @endif type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" >
+                <input name="last_name" @if(!empty($employee)) value="{{ $employee->name}}" @endif type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" >
                 @error('name')
                     <div id="inputNameFeedback" class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -24,13 +24,13 @@
         <div class="input-group">
             <div class="input-group has-validation">
                 <label class="input-group-text" for="inputGroupSelect01">document_type</label>
-                <select name="parent_id_job_position" class="form-select" id="inputGroupSelect">
+                <select name="document_type_id_document_type" class="form-select" id="inputGroupSelect">
                     <option disabled selected>Select an option</option>
                     @foreach($documentTypes as $documentType)
                         @if( !empty($employee) && $employee->document_type_id_document_type == $documentType->id_document_type )
-                            <option selected value="{{ $documentType->id_job_position }}"> {{ $documentType->name }} </option>
+                            <option selected value="{{ $documentType->id_document_type }}"> {{ $documentType->name }} </option>
                         @else
-                            <option value="{{ $documentType->id_job_position }}"> {{ $documentType->name }} </option>
+                            <option value="{{ $documentType->id_document_type }}"> {{ $documentType->name }} </option>
                         @endif
                     @endforeach
                 </select>
@@ -62,6 +62,7 @@
                         @endforeach
                     </select>
                 </div>
+                
             </div>
             </div>
         <div class="col-12 m-2">
@@ -72,9 +73,9 @@
                         <option disabled selected>Select an option</option>
                         @foreach($cities as $city)
                             @if( !empty($employee) && $employee->city_id_city == $city->id_city )
-                                <option selected value="{{ $city->city_id_city }}"> {{ $city->name }} </option>
+                                <option selected value="{{ $city->id_city }}"> {{ $city->name }} </option>
                             @else
-                                <option value="{{ $city->city_id_city }}"> {{ $city->name }} </option>
+                                <option value="{{ $city->id_city }}"> {{ $city->name }} </option>
                             @endif
                         @endforeach
                     </select>
@@ -102,11 +103,24 @@
                 @enderror
             </div>
         </div>
-
-        
-        <!-- @if($errors->any())
-            {!! implode('', $errors->all('<div>:message</div>')) !!}
-        @endif -->
+        <div class="col-12 m-2">
+        <div class="input-group ">
+            
+            <div class="input-group has-validation">
+                <label class="input-group-text" for="inputGroupSelect01">Job position</label>
+                <select name="id_job_position" class="form-select" id="inputGroupSelect">
+                    <option disabled selected>Select an option</option>
+                    @foreach($jobPositions as $jobPositionElement)
+                        @if( !empty($employee->job_positions) && $jobPositionElement->id_job_position == $employee->job_positions[count($employee->job_positions)-1]->id_job_position )
+                            <option selected value="{{ $jobPositionElement->id_job_position }}"> {{ $jobPositionElement->name }} </option>
+                        @else
+                            <option value="{{ $jobPositionElement->id_job_position }}"> {{ $jobPositionElement->name }} </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Add / Update</button>
         </div>

@@ -63,6 +63,6 @@ class Employee extends Model
 	public function job_positions()
 	{
 		return $this->belongsToMany(JobPosition::class, 'employee_job_position', 'fk_id_employee', 'fk_id_job_position')
-					->withPivot('id_employee_job_position', 'id_direct_boss_employee_job_position', 'update_at', 'deleted_at');
+					->withPivot('id_employee_job_position', 'id_direct_boss_employee_job_position', 'updated_at', 'deleted_at');
 	}
 }

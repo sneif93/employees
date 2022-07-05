@@ -1,5 +1,5 @@
 
-<div class="col">
+<div class="col-6">
     <div class="table"> 
         <ul class="nav">
         <h2>Employees</h2>

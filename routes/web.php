@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EmployeeFormChangeEvent;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\DocumentType;
@@ -77,14 +78,17 @@ Route::get('/employee-add', function () {
     $countries = Country::all();
     $cities = City::all();
     $documentTypes = DocumentType::all();
-    return view("employee.add", compact('method','route','countries','cities','documentTypes') );
+    $jobPositions = JobPosition::all();
+    return view("employee.add", compact('method','route','countries','cities','documentTypes','jobPositions') );
 });
 Route::get('/employee-update/{id}', function ($id) {
     $method = "POST";
     $route = '/employee/update/'.$id;
-    $employee = Employee::where('id_employee',$id)->with(["city","document_type"])->first();
+    $employee = Employee::where('id_employee',$id)->with(["city","document_type","job_positions"])->first();
     $countries = Country::all();    
     $cities = City::all();
     $documentTypes = DocumentType::all();
-    return view("employee.add", compact('method','route','employee','countries','cities','documentTypes') );
+    $jobPositions = JobPosition::all();
+    
+    return view("employee.add", compact('method','route','employee','countries','cities','documentTypes','jobPositions') );
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use App\Models\EmployeeJobPosition;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -29,6 +30,10 @@ class EmployeeController extends Controller
     {
         $employee = Employee::create($request->all());
         if($employee){
+            $employee_job_position = new EmployeeJobPosition();
+            $employee_job_position->fk_id_employee = $employee->id_employee;
+            $employee_job_position->fk_id_job_position = $request->id_job_position;
+            $employee_job_position->save();
             $employee->refresh();
             return view("layouts.element",compact('employee'));
         }
@@ -67,8 +72,12 @@ class EmployeeController extends Controller
             }
             if($employee->fill($request->all())->save()){
                 $employee = Employee::where('id_employee',$id)->with(["city","document_type"])->first();
-                var_dump($employee->toArray());die;
+                
                 if($employee){
+                    $employee_job_position = new EmployeeJobPosition();
+                    $employee_job_position->fk_id_employee = $employee->id_employee;
+                    $employee_job_position->fk_id_job_position = $request->id_job_position;
+                    $employee_job_position->save();
                     return view("layouts.element",compact('employee'));
                 }else{
                     abort(401,"Not Found");

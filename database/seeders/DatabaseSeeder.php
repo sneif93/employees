@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
         \App\Models\Country::factory()->create(["name"=>"Colombia","created_at" => now()]);
+        \App\Models\Country::factory()->create(["name"=>"Ecuador","created_at" => now()]);
+        \App\Models\Country::factory()->create(["name"=>"Chile","created_at" => now()]);
         \App\Models\City::factory(30)->create();    
         \App\Models\City::factory(30)->create();    
         \App\Models\JobPosition::factory()->create(["name"=>"President","parent_id_job_position" => Null,"created_at" => now()]);

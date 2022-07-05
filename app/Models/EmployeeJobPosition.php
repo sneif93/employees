@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $fk_id_job_position
  * @property int|null $id_direct_boss_employee_job_position
  * @property Carbon $created_at
- * @property Carbon|null $update_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  * 
  * @property Employee $employee
@@ -43,14 +43,14 @@ class EmployeeJobPosition extends Model
 	];
 
 	protected $dates = [
-		'update_at'
+		'updated_at'
 	];
 
 	protected $fillable = [
 		'fk_id_employee',
 		'fk_id_job_position',
 		'id_direct_boss_employee_job_position',
-		'update_at'
+		'updated_at'
 	];
 
 	public function employee()
